@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MiCocinaBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLASIFICACION">
+          <Key>
+            <PropertyRef Name="IdClasificacion" />
+          </Key>
+          <Property Name="IdClasificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRecetas" Type="int" />
+          <Property Name="Calificacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COMENTARIO">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" MaxLength="100" />
+          <Property Name="FechaComentario" Type="date" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="IdRecetas" Type="int" />
+        </EntityType>
+        <EntityType Name="FAVORITOS">
+          <Key>
+            <PropertyRef Name="IdFavoritos" />
+          </Key>
+          <Property Name="IdFavoritos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="IdRecetas" Type="int" />
+        </EntityType>
+        <EntityType Name="RECETAS">
+          <Key>
+            <PropertyRef Name="IdRecetas" />
+          </Key>
+          <Property Name="IdRecetas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TituloReceta" Type="varchar" MaxLength="50" />
+          <Property Name="DescripcionReceta" Type="varchar" MaxLength="50" />
+          <Property Name="IngredientesReceta" Type="varchar" MaxLength="50" />
+          <Property Name="ImagenRecetas" Type="varbinary(max)" />
+          <Property Name="DificultadRecetas" Type="varchar" MaxLength="50" />
+          <Property Name="PorcionRecetas" Type="varchar" MaxLength="50" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="CorreoUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="ContraseñaUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="ImagenUsuario" Type="varbinary(max)" />
+          <Property Name="DescripcionUsuario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__CLASIFICA__IdRec__440B1D61">
+          <End Role="RECETAS" Type="Self.RECETAS" Multiplicity="0..1" />
+          <End Role="CLASIFICACION" Type="Self.CLASIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECETAS">
+              <PropertyRef Name="IdRecetas" />
+            </Principal>
+            <Dependent Role="CLASIFICACION">
+              <PropertyRef Name="IdRecetas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMENTARI__IdRec__3D5E1FD2">
+          <End Role="RECETAS" Type="Self.RECETAS" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECETAS">
+              <PropertyRef Name="IdRecetas" />
+            </Principal>
+            <Dependent Role="COMENTARIO">
+              <PropertyRef Name="IdRecetas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMENTARI__IdUsu__3C69FB99">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="COMENTARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITOS__IdRec__412EB0B6">
+          <End Role="RECETAS" Type="Self.RECETAS" Multiplicity="0..1" />
+          <End Role="FAVORITOS" Type="Self.FAVORITOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECETAS">
+              <PropertyRef Name="IdRecetas" />
+            </Principal>
+            <Dependent Role="FAVORITOS">
+              <PropertyRef Name="IdRecetas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITOS__IdUsu__403A8C7D">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="FAVORITOS" Type="Self.FAVORITOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="FAVORITOS">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECETAS__IdUsuar__398D8EEE">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="RECETAS" Type="Self.RECETAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="RECETAS">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiCocinaBDModelStoreContainer">
+          <EntitySet Name="CLASIFICACION" EntityType="Self.CLASIFICACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMENTARIO" EntityType="Self.COMENTARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAVORITOS" EntityType="Self.FAVORITOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RECETAS" EntityType="Self.RECETAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLASIFICA__IdRec__440B1D61" Association="Self.FK__CLASIFICA__IdRec__440B1D61">
+            <End Role="RECETAS" EntitySet="RECETAS" />
+            <End Role="CLASIFICACION" EntitySet="CLASIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMENTARI__IdRec__3D5E1FD2" Association="Self.FK__COMENTARI__IdRec__3D5E1FD2">
+            <End Role="RECETAS" EntitySet="RECETAS" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMENTARI__IdUsu__3C69FB99" Association="Self.FK__COMENTARI__IdUsu__3C69FB99">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITOS__IdRec__412EB0B6" Association="Self.FK__FAVORITOS__IdRec__412EB0B6">
+            <End Role="RECETAS" EntitySet="RECETAS" />
+            <End Role="FAVORITOS" EntitySet="FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITOS__IdUsu__403A8C7D" Association="Self.FK__FAVORITOS__IdUsu__403A8C7D">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="FAVORITOS" EntitySet="FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECETAS__IdUsuar__398D8EEE" Association="Self.FK__RECETAS__IdUsuar__398D8EEE">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="RECETAS" EntitySet="RECETAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiCocinaBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLASIFICACION">
+          <Key>
+            <PropertyRef Name="IdClasificacion" />
+          </Key>
+          <Property Name="IdClasificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRecetas" Type="Int32" />
+          <Property Name="Calificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RECETA" Relationship="Self.FK__CLASIFICA__IdRec__440B1D61" FromRole="CLASIFICACION" ToRole="RECETAS" />
+        </EntityType>
+        <EntityType Name="COMENTARIO">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comentario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaComentario" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="IdRecetas" Type="Int32" />
+          <NavigationProperty Name="RECETA" Relationship="Self.FK__COMENTARI__IdRec__3D5E1FD2" FromRole="COMENTARIO" ToRole="RECETAS" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__COMENTARI__IdUsu__3C69FB99" FromRole="COMENTARIO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="FAVORITO">
+          <Key>
+            <PropertyRef Name="IdFavoritos" />
+          </Key>
+          <Property Name="IdFavoritos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="IdRecetas" Type="Int32" />
+          <NavigationProperty Name="RECETA" Relationship="Self.FK__FAVORITOS__IdRec__412EB0B6" FromRole="FAVORITOS" ToRole="RECETAS" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__FAVORITOS__IdUsu__403A8C7D" FromRole="FAVORITOS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="RECETA">
+          <Key>
+            <PropertyRef Name="IdRecetas" />
+          </Key>
+          <Property Name="IdRecetas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TituloReceta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionReceta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IngredientesReceta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImagenRecetas" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DificultadRecetas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PorcionRecetas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="CLASIFICACIONs" Relationship="Self.FK__CLASIFICA__IdRec__440B1D61" FromRole="RECETAS" ToRole="CLASIFICACION" />
+          <NavigationProperty Name="COMENTARIOs" Relationship="Self.FK__COMENTARI__IdRec__3D5E1FD2" FromRole="RECETAS" ToRole="COMENTARIO" />
+          <NavigationProperty Name="FAVORITOS" Relationship="Self.FK__FAVORITOS__IdRec__412EB0B6" FromRole="RECETAS" ToRole="FAVORITOS" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__RECETAS__IdUsuar__398D8EEE" FromRole="RECETAS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContraseñaUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImagenUsuario" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DescripcionUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMENTARIOs" Relationship="Self.FK__COMENTARI__IdUsu__3C69FB99" FromRole="USUARIO" ToRole="COMENTARIO" />
+          <NavigationProperty Name="FAVORITOS" Relationship="Self.FK__FAVORITOS__IdUsu__403A8C7D" FromRole="USUARIO" ToRole="FAVORITOS" />
+          <NavigationProperty Name="RECETAS" Relationship="Self.FK__RECETAS__IdUsuar__398D8EEE" FromRole="USUARIO" ToRole="RECETAS" />
+        </EntityType>
+        <Association Name="FK__CLASIFICA__IdRec__440B1D61">
+          <End Role="RECETAS" Type="Self.RECETA" Multiplicity="0..1" />
+          <End Role="CLASIFICACION" Type="Self.CLASIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECETAS">
+              <PropertyRef Name="IdRecetas" />
+            </Principal>
+            <Dependent Role="CLASIFICACION">
+              <PropertyRef Name="IdRecetas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMENTARI__IdRec__3D5E1FD2">
+          <End Role="RECETAS" Type="Self.RECETA" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECETAS">
+              <PropertyRef Name="IdRecetas" />
+            </Principal>
+            <Dependent Role="COMENTARIO">
+              <PropertyRef Name="IdRecetas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMENTARI__IdUsu__3C69FB99">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="COMENTARIO" Type="Self.COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="COMENTARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITOS__IdRec__412EB0B6">
+          <End Role="RECETAS" Type="Self.RECETA" Multiplicity="0..1" />
+          <End Role="FAVORITOS" Type="Self.FAVORITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECETAS">
+              <PropertyRef Name="IdRecetas" />
+            </Principal>
+            <Dependent Role="FAVORITOS">
+              <PropertyRef Name="IdRecetas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAVORITOS__IdUsu__403A8C7D">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="FAVORITOS" Type="Self.FAVORITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="FAVORITOS">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RECETAS__IdUsuar__398D8EEE">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="RECETAS" Type="Self.RECETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="RECETAS">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiCocinaBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLASIFICACIONs" EntityType="Self.CLASIFICACION" />
+          <EntitySet Name="COMENTARIOs" EntityType="Self.COMENTARIO" />
+          <EntitySet Name="FAVORITOS" EntityType="Self.FAVORITO" />
+          <EntitySet Name="RECETAS" EntityType="Self.RECETA" />
+          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK__CLASIFICA__IdRec__440B1D61" Association="Self.FK__CLASIFICA__IdRec__440B1D61">
+            <End Role="RECETAS" EntitySet="RECETAS" />
+            <End Role="CLASIFICACION" EntitySet="CLASIFICACIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMENTARI__IdRec__3D5E1FD2" Association="Self.FK__COMENTARI__IdRec__3D5E1FD2">
+            <End Role="RECETAS" EntitySet="RECETAS" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMENTARI__IdUsu__3C69FB99" Association="Self.FK__COMENTARI__IdUsu__3C69FB99">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="COMENTARIO" EntitySet="COMENTARIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITOS__IdRec__412EB0B6" Association="Self.FK__FAVORITOS__IdRec__412EB0B6">
+            <End Role="RECETAS" EntitySet="RECETAS" />
+            <End Role="FAVORITOS" EntitySet="FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAVORITOS__IdUsu__403A8C7D" Association="Self.FK__FAVORITOS__IdUsu__403A8C7D">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="FAVORITOS" EntitySet="FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RECETAS__IdUsuar__398D8EEE" Association="Self.FK__RECETAS__IdUsuar__398D8EEE">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="RECETAS" EntitySet="RECETAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiCocinaBDModelStoreContainer" CdmEntityContainer="MiCocinaBDEntities">
+          <EntitySetMapping Name="CLASIFICACIONs">
+            <EntityTypeMapping TypeName="MiCocinaBDModel.CLASIFICACION">
+              <MappingFragment StoreEntitySet="CLASIFICACION">
+                <ScalarProperty Name="IdClasificacion" ColumnName="IdClasificacion" />
+                <ScalarProperty Name="IdRecetas" ColumnName="IdRecetas" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMENTARIOs">
+            <EntityTypeMapping TypeName="MiCocinaBDModel.COMENTARIO">
+              <MappingFragment StoreEntitySet="COMENTARIO">
+                <ScalarProperty Name="IdComentario" ColumnName="IdComentario" />
+                <ScalarProperty Name="Comentario1" ColumnName="Comentario" />
+                <ScalarProperty Name="FechaComentario" ColumnName="FechaComentario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdRecetas" ColumnName="IdRecetas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAVORITOS">
+            <EntityTypeMapping TypeName="MiCocinaBDModel.FAVORITO">
+              <MappingFragment StoreEntitySet="FAVORITOS">
+                <ScalarProperty Name="IdFavoritos" ColumnName="IdFavoritos" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdRecetas" ColumnName="IdRecetas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECETAS">
+            <EntityTypeMapping TypeName="MiCocinaBDModel.RECETA">
+              <MappingFragment StoreEntitySet="RECETAS">
+                <ScalarProperty Name="IdRecetas" ColumnName="IdRecetas" />
+                <ScalarProperty Name="TituloReceta" ColumnName="TituloReceta" />
+                <ScalarProperty Name="DescripcionReceta" ColumnName="DescripcionReceta" />
+                <ScalarProperty Name="IngredientesReceta" ColumnName="IngredientesReceta" />
+                <ScalarProperty Name="ImagenRecetas" ColumnName="ImagenRecetas" />
+                <ScalarProperty Name="DificultadRecetas" ColumnName="DificultadRecetas" />
+                <ScalarProperty Name="PorcionRecetas" ColumnName="PorcionRecetas" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOs">
+            <EntityTypeMapping TypeName="MiCocinaBDModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
+                <ScalarProperty Name="ContraseñaUsuario" ColumnName="ContraseñaUsuario" />
+                <ScalarProperty Name="ImagenUsuario" ColumnName="ImagenUsuario" />
+                <ScalarProperty Name="DescripcionUsuario" ColumnName="DescripcionUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
