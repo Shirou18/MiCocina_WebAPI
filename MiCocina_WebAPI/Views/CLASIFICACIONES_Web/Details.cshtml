@@ -1,0 +1,34 @@
+﻿@model MiCocina_WebAPI.Models.CLASIFICACION
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CLASIFICACION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RECETA.TituloReceta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RECETA.TituloReceta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdClasificacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

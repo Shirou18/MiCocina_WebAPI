@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MiCocina_WebAPI.Models.RECETA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TituloReceta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionReceta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IngredientesReceta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagenRecetas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DificultadRecetas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcionRecetas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUARIO.CodigoUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TituloReceta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionReceta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IngredientesReceta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagenRecetas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DificultadRecetas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcionRecetas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUARIO.CodigoUsuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdRecetas }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdRecetas }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdRecetas })
+        </td>
+    </tr>
+}
+
+</table>

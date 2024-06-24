@@ -184,8 +184,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CLASIFICACIONES_APIController.cs" />
+    <Compile Include="Controllers\CLASIFICACIONES_WebController.cs" />
+    <Compile Include="Controllers\COMENTARIOS_APIController.cs" />
+    <Compile Include="Controllers\COMENTARIOS_WebController.cs" />
+    <Compile Include="Controllers\FAVORITOS_APIController.cs" />
+    <Compile Include="Controllers\FAVORITOS_WebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RECETAS_APIController.cs" />
+    <Compile Include="Controllers\RECETAS_WebController.cs" />
+    <Compile Include="Controllers\USUARIOS_APIController.cs" />
+    <Compile Include="Controllers\USUARIOS_WebController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,6 +323,31 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\USUARIOS_Web\Create.cshtml" />
+    <Content Include="Views\USUARIOS_Web\Delete.cshtml" />
+    <Content Include="Views\USUARIOS_Web\Details.cshtml" />
+    <Content Include="Views\USUARIOS_Web\Edit.cshtml" />
+    <Content Include="Views\USUARIOS_Web\Index.cshtml" />
+    <Content Include="Views\COMENTARIOS_Web\Create.cshtml" />
+    <Content Include="Views\COMENTARIOS_Web\Delete.cshtml" />
+    <Content Include="Views\COMENTARIOS_Web\Details.cshtml" />
+    <Content Include="Views\COMENTARIOS_Web\Edit.cshtml" />
+    <Content Include="Views\COMENTARIOS_Web\Index.cshtml" />
+    <Content Include="Views\FAVORITOS_Web\Create.cshtml" />
+    <Content Include="Views\FAVORITOS_Web\Delete.cshtml" />
+    <Content Include="Views\FAVORITOS_Web\Details.cshtml" />
+    <Content Include="Views\FAVORITOS_Web\Edit.cshtml" />
+    <Content Include="Views\FAVORITOS_Web\Index.cshtml" />
+    <Content Include="Views\CLASIFICACIONES_Web\Create.cshtml" />
+    <Content Include="Views\CLASIFICACIONES_Web\Delete.cshtml" />
+    <Content Include="Views\CLASIFICACIONES_Web\Details.cshtml" />
+    <Content Include="Views\CLASIFICACIONES_Web\Edit.cshtml" />
+    <Content Include="Views\CLASIFICACIONES_Web\Index.cshtml" />
+    <Content Include="Views\RECETAS_Web\Create.cshtml" />
+    <Content Include="Views\RECETAS_Web\Delete.cshtml" />
+    <Content Include="Views\RECETAS_Web\Details.cshtml" />
+    <Content Include="Views\RECETAS_Web\Edit.cshtml" />
+    <Content Include="Views\RECETAS_Web\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

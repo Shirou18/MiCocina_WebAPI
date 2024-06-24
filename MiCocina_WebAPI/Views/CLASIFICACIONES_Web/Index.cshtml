@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MiCocina_WebAPI.Models.CLASIFICACION>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RECETA.TituloReceta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RECETA.TituloReceta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdClasificacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdClasificacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdClasificacion })
+        </td>
+    </tr>
+}
+
+</table>

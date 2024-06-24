@@ -1,0 +1,74 @@
+﻿@model MiCocina_WebAPI.Models.RECETA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RECETA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloReceta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloReceta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionReceta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionReceta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IngredientesReceta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IngredientesReceta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenRecetas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenRecetas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DificultadRecetas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DificultadRecetas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcionRecetas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PorcionRecetas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.CodigoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.CodigoUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRecetas }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

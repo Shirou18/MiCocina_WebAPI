@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="272bda1ac6234cfa9ad07b05c8852b9e" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="MiCocinaBDModel.CLASIFICACION" Width="1.5" PointX="10" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiCocinaBDModel.CLASIFICACION" Width="1.5" PointX="9.875" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MiCocinaBDModel.COMENTARIO" Width="1.5" PointX="4.875" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MiCocinaBDModel.FAVORITO" Width="1.5" PointX="10" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MiCocinaBDModel.RECETA" Width="1.5" PointX="7.625" PointY="6.5" IsExpanded="true" />
